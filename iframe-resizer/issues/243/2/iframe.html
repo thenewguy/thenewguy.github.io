@@ -22,7 +22,7 @@
             
             function resize() {
                 if ('parentIFrame' in window) {
-                    $(".ui-content").height(($(".ui-content").height() == 400) ? 500 : 400);
+                    $(".ui-content").height(($(".ui-content").height() == 400) ? 300 : 400);
                     parentIFrame.size();
                 }
                 if (running){ setTimeout(scroll, 500); }
