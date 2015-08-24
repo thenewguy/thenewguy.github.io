@@ -21,10 +21,8 @@
             }
             
             function resize() {
-                var hewHeight = (0.5 < Math.random()) ? $(".ui-content").height() + 20 : $(".ui-content").height() - 20;
-                    hewHeight = (hewHeight < 400) ? 500 : hewHeight;
                 if ('parentIFrame' in window) {
-                    $(".ui-content").height(hewHeight);
+                    $(".ui-content").height(($(".ui-content").height() == 400) ? 500 : 400);
                     parentIFrame.size();
                 }
                 if (running){ setTimeout(scroll, 500); }
