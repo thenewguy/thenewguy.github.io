@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>content for iframe-resizer issue 243</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        <link rel="stylesheet" type="text/css" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.css" />
+        
+        <script src="iframeResizer.contentWindow.js"></script>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.js"></script>
+        <script type="text/javascript">
+            var running = false;
+            function scroll() {
+                if ('parentIFrame' in window) {
+                    parentIFrame.scrollToOffset(0, 0);
+                }
+                if (running){ setTimeout(resize, 500);}
+            }
+            
+            function resize() {
+                if ('parentIFrame' in window) {
+                    $(".ui-content").height(($(".ui-content").height() == 400) ? 300 : 400);
+                    parentIFrame.size();
+                }
+                if (running){ setTimeout(scroll, 500); }
+            }            
+        </script>
+        <script type="text/javascript" src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.js"></script>
+    </head>
+    <body>
+        <div data-role="page">
+            <div data-role="header">
+                <nav data-role="controlgroup" data-type="horizontal">
+                    <button class="ui-btn ui-btn-b" disabled>top</button>
+                    <a class="ui-btn ui-btn-b" href="#" onclick="running=!running;resize();">toggle</a>
+                </nav>
+            </div>
+            <div role="main" class="ui-content">    
+                content
+            </div>
+            <div data-role="footer" data-iframe-height>
+                <nav>
+                    <button class="ui-btn ui-btn-b" disabled>bottom</button>
+                </nav>
+            </div>
+        </div>
+    </body>
+</html>
